@@ -1,0 +1,84 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="WedDongHo.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+    <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="public/css/style.css"/>
+     <script src="public/bootstrap/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+    <form id="form1" runat="server">
+        
+    <header>
+        <div id="headerTop">
+            <a href="index.aspx"><image src="public/images/logoo.png" alt=""></a>
+            <ul>
+                <li><a href="index.aspx">Trang chủ</a></li>
+                <li><a href="GioHang.aspx">Giỏ hàng</a></li>
+                <li>
+                    <asp:Button ID="btnDangNhap" runat="server" Text="Đăng nhập" OnClick="btnDangNhap_Click" />
+                </li>
+                <li>
+                    <asp:Button ID="btnDangKy" runat="server" Text="Đăng ký" OnClick="btnDangKy_Click" />
+                </li>
+            </ul>
+        </div>
+        <div>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Shop %>" SelectCommand="SELECT * FROM [DanhMuc]"></asp:SqlDataSource>
+        </div>
+        <div id="headerBottom">
+            <ul>
+                <li class='color1'><a href="index.aspx">Trang chủ</a></li>
+                <asp:ListView ID="ListView1" runat="server" DataKeyNames="MaDanhMuc" DataSourceID="SqlDataSource1">
+                    <ItemTemplate>
+                        <li class='color<%# Container.DataItemIndex + 2 %>'><a href="Shop.aspx?category=<%# Eval("MaDanhMuc") %>"><%# Eval("tenDanhMuc") %></a></li>
+                    </ItemTemplate>
+                </asp:ListView>
+            </ul>
+        </div>
+    </header>
+    <section>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </section>
+    </form>
+    <footer>
+        <div id="footerContent" class="row">
+            <div class="col-md-4 center">
+                <h2>Thành viên nhóm 3</h2>
+                <h3>Mai Vũ</h3>
+                <h3>Nguyễn Văn Hải</h3>
+                <h3>Nguyễn Hữu Duy</h3>
+                <h3>Nguyễn Hữu Trường</h3>
+                <h3>Trương Cao Hưng</h3>
+            </div>
+            <div class="col-md-4 center">
+                <h2>Liên hệ</h2>
+                <h3>0354 639 103</h3>
+                <h3>0368 805 196</h3>
+                <h3>0366 810 905</h3>
+                <h3>0328 394 538</h3>
+                <h3>0367 436 345</h3>
+            </div>
+            <div class="col-md-4 center">
+                <h2>Facebook</h2>
+                <h3><a href="#">Vũ</h3>
+                <h3><a href="#">Hải</h3>
+                <h3><a href="#">Duy</h3>
+                <h3><a href="#">Trường</h3>
+                <h3><a href="#">Hưng</a></h3>
+            </div>
+        </div>
+        <div id="footerBottom">
+            © Copyright 2024  <span class='orange'>  IS 385 BB</span>
+        </div>
+    </footer>
+</body>
+</html>
